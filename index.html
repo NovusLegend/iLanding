@@ -27,6 +27,10 @@
   <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
 
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js"></script>
+  
 
 </head>
 
@@ -53,7 +57,7 @@
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
 
-      <a class="btn-getstarted" href="index.html#about">Join Our Club</a>
+      <a class="btn-getstarted" href="login.html">Join Our Club</a>
 
     </div>
   </header>
@@ -84,7 +88,7 @@
               </p>
 
               <div class="hero-buttons">
-                <a href="#about" class="btn btn-primary me-0 me-sm-2 mx-1">join our Club</a>
+                <a href="login.html" class="btn btn-primary me-0 me-sm-2 mx-1">join our Club</a>
                 <a href="" class="btn btn-link mt-2 mt-sm-0 glightbox">
                   <i class="bi bi-play-circle me-1"></i>
                   Play Video of the week
@@ -1102,6 +1106,29 @@
 
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-analytics.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyBUsMdMMRfqm6wdam5Hnw7EXzeKGVzoQLk",
+      authDomain: "website-8c305.firebaseapp.com",
+      projectId: "website-8c305",
+      storageBucket: "website-8c305.firebasestorage.app",
+      messagingSenderId: "912982078031",
+      appId: "1:912982078031:web:84bb227bfe7b35bbda703a",
+      measurementId: "G-CMZBYGSF78"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+  </script>
 
 </body>
 

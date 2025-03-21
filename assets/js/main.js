@@ -173,5 +173,47 @@
   }
   window.addEventListener('load', navmenuScrollspy);
   document.addEventListener('scroll', navmenuScrollspy);
-
+  function signUp() {
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+  
+    firebase.auth().createUserWithEmailAndPassword(email, password)
+      .then((userCredential) => {
+        // Save user data to Firestore
+        const user = userCredential.user;
+        firebase.firestore().collection('users').doc(user.uid).set({
+          email: user.email,
+          createdAt: firebase.firestore.FieldValue.serverTimestamp()
+        });
+        alert('Account created!');
+      })
+      .catch((error) => {
+        alert('Error: ' + error.message);
+      });
+  }
+  function login() {
+    const email = document.getElementById('login-email').value;
+    const password = document.getElementById('login-password').value;
+  
+    firebase.auth().signInWithEmailAndPassword(email, password)
+      .then(() => {
+        alert('Logged in!');
+      })
+      .catch((error) => {
+        alert('Error: ' + error.message);
+      });
+  }
+  function loadUsers() {
+    firebase.firestore().collection('users').get()
+      .then((querySnapshot) => {
+        let html = '<h3>Registered Users:</h3>';
+        querySnapshot.forEach((doc) => {
+          html += `<p>${doc.data().email}</p>`;
+        });
+        document.getElementById('user-list').innerHTML = html;
+      });
+  }
+  
+  // Load users when the page loads
+  window.onload = loadUsers;
 })();
